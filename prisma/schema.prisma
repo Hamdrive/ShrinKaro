@@ -6,7 +6,14 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
+}
+
+model Link {
+  id String @id @unique @default(uuid())
+  createdAt DateTime @default(now())
+  fullUrl String @db.Text()
+  shrinKode String @unique @default(cuid()) @db.VarChar(5)
 }
