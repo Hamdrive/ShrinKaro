@@ -9,20 +9,20 @@ const router = Router();
 router.post(
   "/shrink",
   body("url").isURL({
-      require_tld: true,
-      require_valid_protocol: true,
-      protocols: ["https"],
+    require_tld: true,
+    require_valid_protocol: true,
+    protocols: ["https"],
   }),
   async (req, res) => {
-      //http://localhost:5000/api/shrink, {body: url: "https://www.abc.com"}
-      const { url } = req.body;
+    //http://localhost:5000/api/shrink, {body: url: "https://www.abc.com"}
+    const { url } = req.body;
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-        res.status(400);
-        res.json({ errors: errors.array() });
+      res.status(400);
+      res.json({ errors: errors.array() });
     }
-    
+
     const createId = init({ length: 6 });
     const generateShrinKode = createId();
 
@@ -37,11 +37,21 @@ router.post(
 );
 
 // Get + Redirect
-router.get("/id", (req, res) => {
-  res.json({
-    message: `Received your url with the code ${req.query.id}, redirecting you to the actual website!`,
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const url = await prisma.link.findFirst({ where: { shrinKode: id } });
+  if (!url) {
+    res
+      .status(404)
+      .json({
+        message:
+          "Requested URL not found, please check your shrink code and try again",
+      });
+  }
+  res.status(200).json({
+    message: `Received your url with the code ${id}, redirecting you to the actual website!`,
   });
 });
-
 
 export default router;
