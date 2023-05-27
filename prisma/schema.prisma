@@ -12,8 +12,8 @@ datasource db {
 }
 
 model Link {
-  id String @id @unique @default(uuid())
+  id Int @id @unique @default(autoincrement())
   createdAt DateTime @default(now())
   fullUrl String @db.Text()
-  shrinKode String @unique @default(cuid()) @db.VarChar(5)
+  shrinKode String @unique @db.VarChar(6)
 }
