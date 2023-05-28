@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { validationResult, body } from "express-validator";
-import { init } from "@paralleldrive/cuid2";
+import { nanoid } from "nanoid";
 import prisma from "./db";
 
 const router = Router();
@@ -23,8 +23,7 @@ router.post(
       res.json({ errors: errors.array() });
     }
 
-    const createId = init({ length: 6 });
-    const generateShrinKode = createId();
+    const generateShrinKode = nanoid(6);
 
     const shrinkUrl = await prisma.link.create({
       data: { fullUrl: url, shrinKode: generateShrinKode },
@@ -42,15 +41,17 @@ router.get("/:id", async (req, res) => {
 
   const url = await prisma.link.findFirst({ where: { shrinKode: id } });
   if (!url) {
-    res
-      .status(404)
-      .json({
-        message:
-          "Requested URL not found, please check your shrink code and try again",
-      });
+    res.status(404).json({
+      message:
+        "Requested URL not found, please check your shrink code and try again",
+    });
   }
+  //   res.status(200).json({
+  //     message: `Received your url with the code ${id}, redirecting you to the actual website!`,
+  //   });
+
   res.status(200).json({
-    message: `Received your url with the code ${id}, redirecting you to the actual website!`,
+    data: { url: url.fullUrl },
   });
 });
 
