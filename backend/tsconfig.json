@@ -2,11 +2,11 @@
   "compilerOptions": {
     "sourceMap": true,
     "outDir": "dist",
-    "rootDir": "./backend",
+    "rootDir": "",
     "strict": false,
     "lib": ["esnext"],
     "esModuleInterop": true,
     "declaration": true
   },
-  "include": ["*.ts", "backend/*.ts"]
+  "include": ["*.ts"]
 }
