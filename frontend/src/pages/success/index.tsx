@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 const Success = () => {
   const [isCopied, setIsCopied] = useState(false);
-  const shrinKode = JSON.parse(window.sessionStorage.getItem("shrinKode")!);
+  const shrinKode = typeof window !== "undefined" && JSON.parse(window.sessionStorage.getItem("shrinKode")!);
 
   return (
     <div className='flex flex-col justify-center items-center'>
