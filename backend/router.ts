@@ -45,14 +45,10 @@ router.get("/:id", async (req, res) => {
       message:
         "Requested URL not found, please check your shrink code and try again",
     });
+  } else {
+    res.status(301).redirect(url.fullUrl)
   }
-  //   res.status(200).json({
-  //     message: `Received your url with the code ${id}, redirecting you to the actual website!`,
-  //   });
 
-  res.status(200).json({
-    data: { url: url.fullUrl },
-  });
 });
 
 export default router;
