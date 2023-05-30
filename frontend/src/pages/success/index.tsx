@@ -1,10 +1,11 @@
 import Input from "@/components/Input";
 import Link from 'next/link';
 import React, { useState } from "react";
+import { getCookie } from "cookies-next";
 
 const Success = () => {
   const [isCopied, setIsCopied] = useState(false);
-  const shrinKode = typeof window !== "undefined" && JSON.parse(window.sessionStorage.getItem("shrinKode")!);
+  const shrinKode = getCookie('shrinkCookie');
 
   return (
     <div className='flex flex-col justify-center items-center'>

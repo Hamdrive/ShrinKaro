@@ -12,7 +12,7 @@ const Input = ({value, disabled, onChange}: InputProps) => {
       type="text"
       id="large-input"
       placeholder="Enter link here"
-      className="sm:text-md block w-full rounded-lg bg-gray-50 px-3 py-5 text-gray-900 outline-none disabled:cursor-default disabled:text-gray-400"
+      className="text-base block w-full rounded-lg bg-gray-50 px-3 py-5 text-gray-900 outline-none disabled:cursor-default autofill:bg-gray-50 disabled:text-gray-400"
       onChange={onChange}
       value={value}
       disabled={disabled}
