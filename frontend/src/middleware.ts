@@ -20,8 +20,11 @@ export async function middleware(req: NextRequest) {
       console.error(error);
     }
   }
+
+  return NextResponse.next()
 }
 
 export const config = {
   matcher: ["/((?!.*\\.).*)"],
+  runtime: 'edge'
 };
