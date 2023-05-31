@@ -11,8 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        {/* <link rel="canonical" href={`${query}`} /> */}
-        <link rel="icon" href="../assets/arrowSolid.svg" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <title>ShrinKaro</title>
         <meta property="og:title" content="ShrinKaro" />
         <meta property="og:description" content="Shrink your links in one go" />
