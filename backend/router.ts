@@ -60,11 +60,13 @@ router.get("/:id", async (req, res) => {
   const { id } = req.params;
 
   const url = await prisma.link.findFirst({ where: { shrinKode: id } });
+
+  console.log("here",id, url)
   
   if (url) {
-    res.status(301).redirect(url.fullUrl);
+    res.status(307).json({actualURl: url.fullUrl});
   } else {
-    res.status(404).redirect("https://www.shrinkaro.vercel.app");
+    res.status(404).json("Reference does not exist");
   }
 });
 
