@@ -64,7 +64,7 @@ router.get("/:id", async (req, res) => {
   console.log("here",id, url)
   
   if (url) {
-    res.status(307).json({actualURl: url.fullUrl});
+    res.status(200).json({actualURl: url.fullUrl});
   } else {
     res.status(404).json("Reference does not exist");
   }
