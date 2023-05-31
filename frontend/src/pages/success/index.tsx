@@ -1,14 +1,22 @@
 import Input from "@/components/Input";
-import Link from 'next/link';
-import React, { useState } from "react";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
+import { useRouter } from "next/router";
 
 const Success = () => {
   const [isCopied, setIsCopied] = useState(false);
-  const shrinKode = getCookie('shrinkCookie');
+  const router = useRouter();
+  const shrinKode = getCookie("shrinkCookie");
+
+  useEffect(() => {
+    if (!shrinKode) {
+      router.push("/");
+    }
+  }, []);
 
   return (
-    <div className='flex flex-col justify-center items-center'>
+    <div className="flex flex-col items-center justify-center">
       <div className="flex items-center justify-center rounded-lg border border-gray-300">
         <Input disabled={true} value={`shrinkaro.vercel.app/${shrinKode}`} />
         <button
@@ -23,12 +31,12 @@ const Success = () => {
           {isCopied ? "Copied!" : "Copy"}
         </button>
       </div>
-      <Link href='/'>
-      <div className='mt-1'>
-        <span className="text-sm font-light text-purple-500 underline cursor-pointer">
-          Shrink another link!
-        </span>
-      </div>
+      <Link href="/">
+        <div className="mt-1">
+          <span className="cursor-pointer text-sm font-light text-purple-500 underline">
+            Shrink another link!
+          </span>
+        </div>
       </Link>
     </div>
   );
