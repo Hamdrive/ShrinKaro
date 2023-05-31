@@ -5,7 +5,7 @@ For the folks who hate sharing loooooong links and would like to keep it nice an
 
 A combination of two words - Shrink + Karo (hindi for "do it")
 
-![Shrinkaro pic](https://github.com/Hamdrive/ShrinKaro/assets/65483354/074f65f0-732c-436b-82a1-4de02977be3c)
+![Shrinkaro homepage](https://github.com/Hamdrive/ShrinKaro/assets/65483354/38400266-c090-42cb-8d75-659c6e536cba)
 
 ## Features
 
