@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(req: NextRequest) {
+  const allowedRoutes = ['/', '/success']
   const regex = new RegExp("^/[a-zA-Z0-9]{6}$");
   const pathname = req.nextUrl.pathname;
 
@@ -13,15 +14,15 @@ export async function middleware(req: NextRequest) {
       if (res.status === 200) {
         const data = await res.json();
         return NextResponse.redirect(data.actualURl);
-      } else {
-        return NextResponse.redirect(req.nextUrl.origin);
       }
     } catch (error) {
       console.error(error);
     }
   }
 
-  return NextResponse.next()
+  if (!allowedRoutes.includes(pathname)) {
+    return NextResponse.redirect(req.nextUrl.origin);
+  }
 }
 
 export const config = {
