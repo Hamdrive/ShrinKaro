@@ -36,7 +36,7 @@ export default function Home() {
     }
   };
   return (
-    <div className="flex flex-col items-center w-full justify-center">
+    <div className="flex flex-col items-center w-full sm:w-96 justify-center">
       <div className="flex items-center w-full justify-center rounded-lg border border-gray-300 focus-within:ring-1 focus-within:ring-pink-500">
         <Input
           onChange={(e) => {
@@ -68,7 +68,7 @@ export default function Home() {
       </div>
       {error && (
         <p className="mt-2 text-xs text-red-600 dark:text-red-400">
-          Make sure your link is properly formatted, ex: https://www.google.com.
+          Make sure your link is properly formatted, ex: https://www.google.com .
         </p>
       )}
     </div>
