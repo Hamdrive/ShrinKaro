@@ -36,8 +36,8 @@ export default function Home() {
     }
   };
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="flex items-center justify-center rounded-lg border border-gray-300 focus-within:ring-1 focus-within:ring-pink-500">
+    <div className="flex flex-col items-center w-full justify-center">
+      <div className="flex items-center w-full justify-center rounded-lg border border-gray-300 focus-within:ring-1 focus-within:ring-pink-500">
         <Input
           onChange={(e) => {
             error && setError(false);
