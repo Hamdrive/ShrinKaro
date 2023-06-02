@@ -1,9 +1,8 @@
 import { Router } from "express";
-import { validationResult, body } from "express-validator";
+import { body } from "express-validator";
 import { nanoid } from "nanoid";
 import prisma from "./db";
 import { handleInputValidation } from "./validation";
-import axios from "axios";
 
 const router = Router();
 
@@ -17,18 +16,11 @@ router.post(
   }),
   handleInputValidation,
   async (req, res) => {
-    const { url } = req.body;
-
-    const checkGenuineUrl = await axios.get(url);
-
-    if (
-      checkGenuineUrl.status === 200 &&
-      checkGenuineUrl.headers["content-type"].includes("text/html")
-    ) {
-
+    const url = req.body.url.toLowerCase();
+    try {
       const checkExistingFullUrl = await prisma.link.findFirst({
         where: { fullUrl: url },
-      }); 
+      });
 
       if (checkExistingFullUrl) {
         res.status(201).json({
@@ -55,10 +47,8 @@ router.post(
           data: shrinkUrl,
         });
       }
-    } else {
-      res
-        .status(404)
-        .json({ message: "Bad Request, Link does not point to any website" });
+    } catch (error) {
+      console.error(error);
     }
   }
 );
